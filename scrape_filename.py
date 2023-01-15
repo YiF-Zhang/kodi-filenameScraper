@@ -2,9 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import xbmcplugin,xbmcgui,xbmc,xbmcaddon
-import os,sys,urllib
-import urllib.request
-import urllib.parse
+import os,sys,urllib,urllib.parse
 
 def get_params():
         param=[]
@@ -21,20 +19,20 @@ def get_params():
                         splitparams=pairsofparams[i].split('=')
                         if (len(splitparams))==2:
                                 param[splitparams[0]]=splitparams[1]
-                                
+
         return param
 
 
 params=get_params()
 
-action=urllib.parse.unquote_plus(params["action"])
+action=urllib.parse.unquote(params["action"])
 
 if action == 'find':
-    title=urllib.parse.unquote_plus(params["title"])
-    liz=xbmcgui.ListItem(title, thumbnailImage='DefaultVideo.png', offscreen=True)
+    title=urllib.parse.unquote(params["title"])
+    liz=xbmcgui.ListItem(title, offscreen=True)
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=title, listitem=liz, isFolder=True)
 elif action == 'getdetails':
-    url=urllib.parse.unquote_plus(params["url"])
+    url=urllib.parse.unquote(params["url"])
     liz=xbmcgui.ListItem(url, offscreen=True)
     liz.setInfo('video',
         {'title': url
