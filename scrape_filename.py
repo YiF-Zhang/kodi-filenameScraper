@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import xbmcplugin,xbmcgui,xbmc,xbmcaddon
-import os,sys,urllib
+import os,sys,urllib,request
 
 def get_params():
         param=[]
